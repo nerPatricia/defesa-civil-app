@@ -1,3 +1,4 @@
+import { LoadingService } from './../../service/loading.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/service/auth.service';
@@ -17,7 +18,8 @@ export class HomePage implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private loading: LoadingService
   ) {
     this.form = this.formBuilder.group(
       {
@@ -38,17 +40,20 @@ export class HomePage implements OnInit {
   }
 
   login() {
+    this.loading.present();
     const tipoUsuario = this.checkAgente ? 'agente' : 'cidadao';
 
     this.authService.login(this.form.get('cpf').value, this.form.get('senha').value, tipoUsuario).then(
-        async (response: any) => {
-          await this.authService.saveAuth({ token: response.token, tipo: tipoUsuario, bairro: response.bairro });
-          this.router.navigateByUrl('/dashboard');
-        }, error => {
-          Swal.fire('Atenção', 'Usuário e/ou senha inválidos.', 'warning');
-          console.log(error);
-        }
-    );
+          async (response: any) => {
+            await this.authService.saveAuth({ token: response.token, tipo: tipoUsuario, bairro: response.bairro, id: response.agenteId || null });
+            this.loading.dismiss();
+            this.router.navigateByUrl('/dashboard');
+          }, error => {
+            this.loading.dismiss();
+            Swal.fire('Atenção', 'Usuário e/ou senha inválidos.', 'warning');
+            console.log(error);
+          }
+      );
   }
 
   esqueciSenha() {

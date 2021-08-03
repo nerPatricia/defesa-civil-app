@@ -1,3 +1,4 @@
+import { LoadingService } from './../../service/loading.service';
 import { ToastService } from '../../service/toast.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgModule } from '@angular/core';
@@ -25,6 +26,7 @@ const routes: Routes = [
     NgxMaskModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  declarations: [CadastrarNotificacaoPage]
+  declarations: [CadastrarNotificacaoPage],
+  providers: [LoadingService]
 })
 export class CadastrarNotificacaoPageModule {}

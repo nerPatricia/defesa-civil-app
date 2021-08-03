@@ -1,3 +1,4 @@
+import { LoadingService } from './../../service/loading.service';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -21,6 +22,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule
   ],
-  declarations: [DashboardPage]
+  declarations: [DashboardPage],
+  providers: [LoadingService]
 })
 export class DashboardPageModule {}

@@ -1,5 +1,6 @@
+import { LoadingService } from './../../service/loading.service';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -16,8 +17,6 @@ export class AppHeaderComponent {
   @Input()
   showButtonLogout: boolean = false;
   @Input()
-  showButtonAddCredits: boolean = false;
-  @Input()
   title: string;
   @Input()
   iconTitle: string = '';
@@ -31,15 +30,23 @@ export class AppHeaderComponent {
   constructor(
     public navCtrl: NavController, 
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public alertController: AlertController,
+    private loading: LoadingService
   ) {}
 
-  helpModal() {
-    this.navCtrl.navigateForward('/');
-  }
+  async helpModal() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Ajuda',
+      message: 'Primeiro, selecione um bairro para visualizar as notificações.<br>As notificações estão classificadas da seguinte forma:<br>'
+        + '<b>Gravidade: </b>Alta (vermelho), Média (amarelo), Baixa (verde).<br>'
+        + '<b>Categorias: </b>Acidente, Desastre, Aviso, Informativo.<br>'
+        + '<b>Satus: </b>Encerrada ou Em Aberto.',
+      buttons: ['OK']
+    });
 
-  goToAddCredits() {
-    this.navCtrl.navigateForward('/adicionar-creditos');
+    await alert.present();
   }
 
   logout() {
@@ -48,5 +55,31 @@ export class AppHeaderComponent {
     }, error => {
       console.log(error);
     });
+  }
+
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Sair',
+      message: 'Deseja mesmo sair?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          
+          }
+        }, {
+          text: 'Sim',
+          handler: () => {
+            this.logout();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

@@ -1,3 +1,4 @@
+import { LoadingService } from './../../service/loading.service';
 import { BAIRROS } from './bairros-mock';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
@@ -22,7 +23,8 @@ export class CadastrarUsuarioPage implements OnInit, AfterContentChecked {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private detectorChanges: ChangeDetectorRef
+    private detectorChanges: ChangeDetectorRef,
+    private loading: LoadingService
     ) {
       const todayDate = new Date();
       this.maxDate = new Date(todayDate.setFullYear(todayDate.getFullYear() - 18)).toISOString();
@@ -140,19 +142,21 @@ export class CadastrarUsuarioPage implements OnInit, AfterContentChecked {
       this.form.removeControl('emprego')
     }
 
-    console.log(this.form.value);
+    this.loading.present();
 
     this.authService.registerUser(this.form.value, this.checkAgente ? 'agente' : 'cidadao').then(
-      (response) => {
-        Swal.fire('Sucesso', 'Usuario cadastrado com sucesso, faça login para continuar.', 'success').then(
-          () => {
-            this.router.navigateByUrl('/');
-          }
-        );
-      }, error => {
-        Swal.fire('Ocorreu um erro ao cadastrar usuário.', 'error');
-        console.log(error);
-      }
-    );
+        (response) => {
+          this.loading.dismiss();
+          Swal.fire('Sucesso', 'Usuario cadastrado com sucesso, faça login para continuar.', 'success').then(
+            () => {
+              this.router.navigateByUrl('/');
+            }
+          );
+        }, error => {
+          this.loading.dismiss();
+          Swal.fire('Ocorreu um erro ao cadastrar usuário.', 'error');
+          console.log(error);
+        }
+      );
   }
 }

@@ -3,7 +3,8 @@
 
 <ion-content class="ion-padding">
   <ion-grid>
-    <ion-row *ngIf="authData.tipo === 'agente'" style="justify-content: center; padding-bottom: 2em;">
+    <ion-row *ngIf="authData.tipo === 'agente'"
+      style="justify-content: center; padding-bottom: 2em; margin-left: 1.5em;">
       <ion-col size="6" class="dash-card" (click)="novaNotificacao()">
         <span>NOVA NOTIFICAÇÃO</span>
         <ion-icon name="add-circle"></ion-icon>

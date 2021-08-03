@@ -1,3 +1,4 @@
+import { LoadingService } from './../../service/loading.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -27,7 +28,8 @@ const routes: Routes = [
   ],
   declarations: [CadastrarUsuarioPage],
   providers: [
-    AuthService
+    AuthService,
+    LoadingService
   ]
 })
 export class CadastrarUsuarioPageModule {}

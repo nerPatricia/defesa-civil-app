@@ -1,3 +1,4 @@
+import { LoadingService } from './../../service/loading.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgModule } from '@angular/core';
@@ -23,6 +24,7 @@ const routes: Routes = [
     NgxMaskModule.forRoot(),
     ReactiveFormsModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers: [LoadingService]
 })
 export class HomePageModule {}

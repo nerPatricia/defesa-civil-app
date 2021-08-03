@@ -12,7 +12,7 @@
       <ion-icon class="icon" name="help-circle"></ion-icon>
     </ion-buttons>
 
-    <ion-buttons *ngIf="showButtonLogout" slot="end" (click)="logout()">
+    <ion-buttons *ngIf="showButtonLogout" slot="end" (click)="presentAlertConfirm()">
       <ion-icon style="margin-left: 10px; margin-right: 0;" class="icon" name="log-out-outline"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
