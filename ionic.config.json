@@ -1,0 +1,7 @@
+{
+  "name": "investigacao-indiscreta",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

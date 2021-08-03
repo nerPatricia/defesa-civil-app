@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <span>{{ title }}</span>
+    </ion-title>
+    <ion-buttons *ngIf="showButtonBack != ''" slot="start">
+      <!-- aqui tem que dar um pop pra ultima pagina que foi navegado e nao pro dash-->
+      <ion-back-button [defaultHref]="showButtonBack"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons *ngIf="showButtonHelp" slot="start" (click)="helpModal()">
+      <ion-icon class="icon" name="help-circle"></ion-icon>
+    </ion-buttons>
+
+    <ion-buttons *ngIf="showButtonLogout" slot="end" (click)="logout()">
+      <ion-icon style="margin-left: 10px; margin-right: 0;" class="icon" name="log-out-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

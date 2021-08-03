@@ -1,0 +1,41 @@
+.title {
+  font-weight: 500 !important;
+  color: var(--ion-color-dark-text);
+}
+
+.btn {
+  background-color: var(--ion-color-tertiary);
+  color: var(--ion-color-secondary);
+}
+
+#form {
+  margin: 0;
+
+  ion-item {
+    border: 1px solid;
+    border-radius: 9px;
+    border-color: rgb(196, 196, 196);
+    --background: white;
+    margin-bottom: 10px;
+
+    #input-icon {
+      padding-right: 8px;
+    }
+
+    ion-input {
+      border: none;
+      font-size: 14px !important;
+      font-weight: 400 !important;
+      margin-left: 1.4em;
+      color: var(--ion-color-dark-text);
+
+      input {
+        padding: 20px 0 !important;
+      }
+    }
+
+    ::placeholder {
+      color: #bec4c6;
+    }
+  }
+}

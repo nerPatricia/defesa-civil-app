@@ -1,0 +1,114 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+// cor do background
+ion-content {
+    --ion-background-color: var(--ion-color-secondary) !important;
+}
+
+// diminui a sombra do header 
+.header-md:after {
+    background-position: left 0 top -4px !important;
+}
+
+// tira o tracejado verde do input
+.item-interactive.ion-valid {
+    --highlight-background: none !important;
+}
+
+// tira o tracejado cinza do input
+.item-interactive.item-has-focus {
+    --highlight-background: none !important;
+}
+
+ion-radio {
+    --color-checked: var(--ion-color-secondary);
+    --color: var(--ion-color-dark-text);
+}
+
+.sc-ion-alert-md-h {
+    --min-width: 310px;
+}
+
+ion-select {
+    min-width: max-content;
+}
+
+// layout do botão padrão
+.btn {
+    border-radius: 16px !important;
+    width: 50% !important;
+    height: 2.7em !important;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--ion-color-tertiary);
+    background-color: var(--ion-color-light);
+}
+
+// tira a borda dos input e deixa igual o ion-input
+input {
+    border: 0;
+}
+
+.error-message {
+    font-weight: bold;
+    color: #b94a48;
+    font-size: 10px;
+}
+
+// padroniza o tamanho da fonte
+ion-label {
+    font-size: 14px !important;
+}
+
+ion-datetime {
+    font-size: 14px !important;
+}
+
+ion-select {
+    font-size: 14px !important;
+}
+
+ion-input {
+    font-size: 12px !important;
+}
+
+ion-textarea {
+    font-size: 14px !important;
+}
+
+p {
+    font-size: 13px !important;
+    color: var(--ion-color-grey-text);
+}
+
+h1,
+h4,
+h3 {
+    color: var(--ion-color-grey-text);
+}

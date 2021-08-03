@@ -1,0 +1,112 @@
+<app-header showButtonBack="/"></app-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-text-center ion-justify-content-center">
+      <ion-col class="title">
+        <h2>Cadastre-se</h2>
+        <span>Por favor, preencha os campos abaixo</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="check-agente">
+        <ion-label>Sou Agente</ion-label>
+        <ion-checkbox (ionChange)="onCheck($event)"></ion-checkbox>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 100%; align-items: center;">
+      <ion-col>
+        <ion-list id="form" [formGroup]="form">
+          <ion-item>
+            <ion-icon name="person-outline"></ion-icon>
+            <ion-input type="text" formControlName="nome" placeholder="Nome"> </ion-input>
+          </ion-item>
+          <p [hidden]="!isInvalid('nome')" class="error-message ion-text-center">
+            {{ getErrorMessage('nome') }}
+          </p>
+
+          <ion-item>
+            <ion-icon name="person-outline"></ion-icon>
+            <ion-input type="text" formControlName="sobrenome" placeholder="Sobrenome"> </ion-input>
+          </ion-item>
+          <p [hidden]="!isInvalid('sobrenome')" class="error-message ion-text-center">
+            {{ getErrorMessage('sobrenome') }}
+          </p>
+
+          <ion-item>
+            <ion-icon name="person-outline"></ion-icon>
+            <ion-input type="text" formControlName="cpf" placeholder="CPF" mask="000.000.000-00">
+            </ion-input>
+          </ion-item>
+          <p [hidden]="!isInvalid('cpf')" class="error-message ion-text-center">
+            {{ getErrorMessage('cpf') }}
+          </p>
+
+          <ion-item>
+            <ion-icon name="calendar-outline"></ion-icon>
+            <ion-datetime formControlName="dataDeNascimento" displayFormat="DD/MM/YYYY" [max]="maxDate"
+              placeholder="Data de Nascimento">
+            </ion-datetime>
+            <!-- (ionChange)="alteraDataFim(); validacaoDataDesconto();" -->
+          </ion-item>
+          <p [hidden]="!isInvalid('dataDeNascimento')" class="error-message ion-text-center">
+            {{ getErrorMessage('dataDeNascimento') }}
+          </p>
+
+          <ion-item *ngIf="checkAgente">
+            <ion-icon name="mail-outline"></ion-icon>
+            <ion-input autocomplete type="email" formControlName="email" placeholder="E-mail"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="checkAgente">
+            <ion-icon name="mail-outline"></ion-icon>
+            <ion-select formControlName="emprego" placeholder="Ocupação">
+              <ion-select-option value="prefeitura">Funcionario da Prefeitura</ion-select-option>
+              <ion-select-option value="policial">Policial Civil</ion-select-option>
+              <ion-select-option value="bombeiro">Bombeiro</ion-select-option>
+              <ion-select-option value="cemig">Funcionario da CEMIG</ion-select-option>
+              <ion-select-option value="copasa">Funcionario da COPASA</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item *ngIf="!checkAgente">
+            <ion-icon name="location-outline"></ion-icon>
+            <ion-input type="text" formControlName="cep" placeholder="CEP" mask="00000-000"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!checkAgente">
+            <ion-icon name="location-outline"></ion-icon>
+            <ion-select formControlName="bairro" placeholder="Bairro">
+              <ion-select-option *ngFor="let bairro of bairros" [value]="bairro">{{ bairro }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <ion-input type="password" formControlName="senha" placeholder="Senha"></ion-input>
+          </ion-item>
+          <p [hidden]="!isInvalid('senha')" class="error-message ion-text-center">
+            {{ getErrorMessage('senha') }}
+          </p>
+
+          <ion-item>
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <ion-input type="password" formControlName="checkSenha" placeholder="Confirmar Senha"></ion-input>
+          </ion-item>
+          <p [hidden]="!isInvalid('checkSenha')" class="error-message ion-text-center">
+            {{ getErrorMessage('checkSenha') }}
+          </p>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <button class="btn" tertiary ion-button expand="block" (click)="cadastrar()">
+          Cadastrar
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

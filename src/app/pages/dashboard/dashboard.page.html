@@ -1,0 +1,73 @@
+<app-header showButtonHelp="true" showButtonLogout="true"
+  title="{{ authData.tipo === 'cidadao' ? 'Pagina Inicial' : 'Área do Agente'}}"></app-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row *ngIf="authData.tipo === 'agente'" style="justify-content: center; padding-bottom: 2em;">
+      <ion-col size="6" class="dash-card" (click)="novaNotificacao()">
+        <span>NOVA NOTIFICAÇÃO</span>
+        <ion-icon name="add-circle"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-list id="form">
+      <ion-item>
+        <ion-icon name="location-outline"></ion-icon>
+        <ion-select [(ngModel)]="bairroUsuario" placeholder="Filtre as notificações por bairro"
+          (ionChange)="onSelectChange($event)">
+          <ion-select-option *ngFor="let bairro of bairros" [value]="bairro">{{ bairro }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-row *ngIf="notificacoes.length > 0" style="justify-content: center;">
+      <ion-col size="10" class="dash-card notificacao-card" *ngFor="let notificacao of notificacoes">
+        <span class="title">{{ notificacao.titulo }}</span>
+        <br />
+        <span>{{ notificacao.descricao }}</span>
+        <br />
+        <span><b>Gravidade: </b>{{ notificacao.gravidade }}</span>
+        <span><b>Categoria: </b>{{ notificacao.categoria }}</span>
+        <span *ngIf="notificacao.status === 'encerrado'"><br><b>Encerrado</b></span>
+        <ion-icon name="warning"
+          [style.color]="notificacao.gravidade === 'alta' ? '#f53d3d' : notificacao.gravidade === 'media' ? '#ffc409' : '#2dd36f' ">
+        </ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="notificacoes.length == 0" style="justify-content: center;">
+      <p class="sem-info">Não há notificações cadastradas para o bairro selecionado.</p>
+    </ion-row>
+
+    <!-- <app-notificacoes> </app-notificacoes> -->
+  </ion-grid>
+</ion-content>
+
+
+<!-- <p *ngIf="carrosList.length == 0;" text-center
+      style=" ">
+      Você não possui nenhum veiculo cadastrado ainda. Clique a seguir para cadastrar.
+    </p>
+    <ion-row style="justify-content: center;">
+      <ion-col size="10" class="infocar-card" style="display: flex" *ngFor="let carro of carrosList">
+        <ion-col size="5">
+          <span class="title">{{ carro.carro.placa.toUpperCase() }}</span>
+          <br />
+          <span class="car">{{ carro.carro.modelo.toUpperCase() }}</span>
+        </ion-col>
+        <ion-col size="7">
+          <button class="btn" primary ion-button (click)="!carro.estacionado ? reservarVaga(carro.carro) : null">
+            {{ !carro.estacionado ? 'Estacionar' : getHoraFinal(carro.estacionado) }}
+            <ion-icon name="time-outline"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center" style="padding-top: 2em;">
+        <button class="btn" style="width: 80% !important; background-color: #12a9bb;" ion-button
+          (click)="cadastrarVeiculo()">
+          <ion-icon name="add" style="font-size: larger !important"></ion-icon>
+          Novo Veículo
+        </button>
+      </ion-col>
+    </ion-row> -->

@@ -1,0 +1,51 @@
+<ion-content class="ion-padding">
+  <ion-grid class="top-grid">
+    <ion-row>
+      <ion-col style="align-self: center;">
+        <div class="ion-text-center"><img src="assets/imgs/defesa-civil-mg.png" /></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="bottom-grid">
+    <ion-row>
+      <ion-col>
+        <ion-list id="form" [formGroup]="form">
+          <ion-item style="margin-bottom: 10px;">
+            <ion-icon name="person-outline"></ion-icon>
+            <ion-input type="text" formControlName="cpf" placeholder="CPF" mask="000.000.000-00">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <ion-input [type]="showPassword ? 'text' : 'password'" formControlName="senha" placeholder="Senha">
+            </ion-input>
+            <ion-icon (click)="showPassword = !showPassword" [name]="showPassword ? 'eye-off' : 'eye'">
+            </ion-icon>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="check-agente">
+        <ion-label>Sou Agente</ion-label>
+        <ion-checkbox (ionChange)="onCheck($event)"></ion-checkbox>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <button class="btn" secondary ion-button (click)="login()">
+          Entrar
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <span style="font-size: 0.9em; color: #ffffff;">Ainda não tem uma conta?</span>
+        <button class="btn" secondary ion-button (click)="cadastrar()">
+          Criar uma conta
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,73 @@
+<app-header showButtonBack="/dashboard"></app-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-text-center ion-justify-content-center">
+      <ion-col class="title">
+        <h2>Cadastre uma notificação</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="height: 100%; align-items: center;">
+      <ion-col>
+        <ion-list id="form" [formGroup]="form">
+          <ion-item>
+            <ion-icon name="location-outline"></ion-icon>
+            <ion-select formControlName="bairro" placeholder="Bairro">
+              <ion-select-option *ngFor="let bairro of bairros" [value]="bairro">{{ bairro }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="text-outline"></ion-icon>
+            <ion-input type="text" formControlName="titulo" placeholder="Titulo"> </ion-input>
+          </ion-item>
+          <p [hidden]="!isInvalid('titulo')" class="error-message ion-text-center">
+            {{ getErrorMessage('titulo') }}
+          </p>
+
+          <ion-item>
+            <ion-icon name="document-text-outline"></ion-icon>
+            <ion-input type="text" formControlName="descricao" placeholder="Descrição"> </ion-input>
+          </ion-item>
+          <p [hidden]="!isInvalid('descricao')" class="error-message ion-text-center">
+            {{ getErrorMessage('descricao') }}
+          </p>
+
+          <ion-item>
+            <ion-icon name="warning-outline"></ion-icon>
+            <ion-select formControlName="gravidade" placeholder="Gravidade">
+              <ion-select-option value="alta">Alta</ion-select-option>
+              <ion-select-option value="media">Media</ion-select-option>
+              <ion-select-option value="baixa">Baixa</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <p [hidden]="!isInvalid('gravidade')" class="error-message ion-text-center">
+            {{ getErrorMessage('gravidade') }}
+          </p>
+
+          <ion-item>
+            <ion-icon name="warning-outline"></ion-icon>
+            <ion-select formControlName="categoria" placeholder="Categoria">
+              <ion-select-option value="acidente">Acidente</ion-select-option>
+              <ion-select-option value="desastre">Desastre</ion-select-option>
+              <ion-select-option value="aviso">Aviso</ion-select-option>
+              <ion-select-option value="informativo">Informativo</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <p [hidden]="!isInvalid('categoria')" class="error-message ion-text-center">
+            {{ getErrorMessage('categoria') }}
+          </p>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <button class="btn" tertiary ion-button expand="block" (click)="cadastrar()">
+          Cadastrar
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

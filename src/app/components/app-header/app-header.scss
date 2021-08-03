@@ -1,0 +1,33 @@
+ion-header {
+  --ion-background-color: white;
+  // fundo branco com detalhes cinza
+
+  ion-toolbar {
+    ion-buttons {
+      color: var(--ion-color-grey-text);
+
+      .icon {
+        font-size: xx-large;
+        margin-right: 10px;
+      }
+    }
+
+    ion-title {
+      font-weight: 400;
+      color: var(--ion-color-grey-text);
+      text-align: center;
+      padding-top: 10px;
+
+      #icon-title {
+        font-size: larger;
+      }
+
+      span {
+        font-weight: bold;
+        font-size: medium;
+        vertical-align: super;
+        padding-left: 1em;
+      }
+    }
+  }
+}

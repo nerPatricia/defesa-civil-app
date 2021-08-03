@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es2015",
+    "baseUrl": "./",
+    "paths": {
+      "@app/env": ["environments/environment"],
+      "@app/*": ["src/app/*"],
+      "@mocks/*": ["src/mocks/*"],
+      "@components/*": ["src/components/*"],
+      "@directives/*": ["src/directives/*"],
+      "@enums/*": ["src/enums/*"],
+      "@const/*": ["src/const/*"],
+      "@env/*": ["src/env/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@models/*": ["src/models/*"],
+      "@pages/*": ["src/pages/*"],
+      "@pipes/*": ["src/pipes/*"],
+      "@providers/*": ["src/providers/*"],
+      "@helpers/*": ["src/helpers/*"]
+    },
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "environments/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compileOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  },
+  "files": ["./plugins/dynatrace-cordova-plugin/typings/main.d.ts"]
+}
